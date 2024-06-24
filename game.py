@@ -1,14 +1,13 @@
 import random
 import tkinter as tk
 from tkinter import messagebox
-from PIL import Image, ImageTk
 
 class RockPaperScissorsGame:
     def __init__(self, master):
         self.master = master
         self.master.title("Rock Paper Scissors")
         self.master.geometry("300x200")
-        self.master.configure(background="#f0f0f0")
+        self.master.configure(background="#f0f0f0")  # Set background color
 
         self.user_score = 0
         self.computer_score = 0
@@ -16,28 +15,15 @@ class RockPaperScissorsGame:
         self.create_widgets()
 
     def create_widgets(self):
-        tk.Label(self.master, text="Choose your move:", font=("Arial", 14), fg="#00698f").pack(pady=10)
+        tk.Label(self.master, text="Choose your move:", font=("Arial", 14), fg="#00698f").pack(pady=10)  # Set font and color
 
-        button_frame = tk.Frame(self.master, bg="#f0f0f0")
+        button_frame = tk.Frame(self.master, bg="#f0f0f0")  # Set background color
         button_frame.pack()
-
-        self.rock_image = ImageTk.PhotoImage(Image.open("rock.jpg"))
-        self.paper_image = ImageTk.PhotoImage(Image.open("paper.jpg"))
-        self.scissors_image = ImageTk.PhotoImage(Image.open("scissors.jpg"))
 
         moves = ['Rock', 'Paper', 'Scissors']
         for move in moves:
-            if move == 'Rock':
-                button = tk.Button(button_frame, image=self.rock_image, command=lambda m=move: self.play(m), 
-                                   bg="#4CAF50", fg="white", font=("Arial", 12), width=10)
-            elif move == 'Paper':
-                button = tk.Button(button_frame, image=self.paper_image, command=lambda m=move: self.play(m), 
-                                   bg="#4CAF50", fg="white", font=("Arial", 12), width=10)
-            else:
-                button = tk.Button(button_frame, image=self.scissors_image, command=lambda m=move: self.play(m), 
-                                   bg="#4CAF50", fg="white", font=("Arial", 12), width=10)
-            button.image = self.rock_image if move == 'Rock' else self.paper_image if move == 'Paper' else self.scissors_image
-            button.pack(side=tk.LEFT, padx=5)
+            tk.Button(button_frame, text=move, command=lambda m=move: self.play(m), 
+                       bg="#4CAF50", fg="white", font=("Arial", 12), width=10).pack(side=tk.LEFT, padx=5)  # Set button style
 
         self.result_label = tk.Label(self.master, text="", font=("Arial", 12), fg="#00698f")
         self.result_label.pack(pady=10)
